@@ -1,27 +1,34 @@
 package helpers
 
 import (
-	"net/http"
-	"io/ioutil"
 	"html/template"
+	"io/ioutil"
+	"net/http"
 )
 
 // Global templates for caching
-var templates = template.Must(template.ParseGlob(
-	"templates/*.html",
-))
+var base = template.Must(
+	template.ParseFiles("./templates/base.html"))
 
-// // Global markdown pages cached
+var tmpls = make(map[string]*template.Template)
+
+func init() {
+	tmpls["home"] = template.Must(template.Must(base.Clone()).ParseFiles("./templates/home.html"))
+	tmpls["post"] = template.Must(template.Must(base.Clone()).ParseFiles("./templates/post.html"))
+	tmpls["err"] = template.Must(template.Must(base.Clone()).ParseFiles("./templates/err.html"))
+}
+
+// Global markdown pages cached
 // var content = ioutil.ReadFile()
 
-// How a Page will be stored in memory
+// Page will be stored in memory
 type Page struct {
 	Title string
-	Body []string // type implies that it is a slice
+	Body  []string // type implies that it is a slice
 }
 
 // Load page from storage to a struct page
-func loadPage(title string) (*Page, error) {
+func loadMarkdown(title string) (*Page, error) {
 	filename := "./content/" + title + ".md"
 	body, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -31,19 +38,23 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: content}, nil
 }
 
-// A generic template renderer
+// RenderTemplate : A generic template renderer
 func RenderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
-    err := templates.ExecuteTemplate(w, tmpl + ".html", data)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-    }
+
+	templates := tmpls[tmpl]
+
+	err := templates.ExecuteTemplate(w, "base", data)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
+// PostHandle for rendering posts
 func PostHandle(w http.ResponseWriter, r *http.Request) {
-	post_name := r.URL.Path[len("/view/"):]
-	to_render, err := loadPage(post_name)
+	postName := r.URL.Path[len("/view/"):]
+	toRender, err := loadMarkdown(postName)
 	if err != nil {
-		panic(err)
+		toRender, err = loadMarkdown("error")
 	}
-	RenderTemplate(w, "post", to_render)
+	RenderTemplate(w, "post", toRender)
 }

@@ -1,8 +1,16 @@
+{{define "title"}}
+    <title>
+        {{.Title}}
+    </title>
+{{end}}
+
+{{define "content"}}
 <h1>{{.Title}}</h1>
 
 <p>
     <!-- To print Go []byte array -->
     {{range $val := .Body}}
-    {{printf "%s" $val}}<br>
+        {{printf "%s" $val}}<br>
     {{end}}
 </p>
+{{end}}

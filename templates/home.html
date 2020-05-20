@@ -1,7 +1,15 @@
-<h1>Blog Home V0.001</h1>
+{{define "title"}}
+    <title>
+        Unrolled Loops
+    </title>
+{{end}}
 
-<p>
-    {{range $val := .}}
-        <a href="/view/{{$val}}">{{$val}}</a></br>
-    {{end}}
-</p>
+{{define "content"}}
+    <h1>Blog Home V0.001</h1>
+
+    <p>
+        {{range $val := .}}
+            <a href="/view/{{$val}}">{{$val}}</a></br>
+        {{end}}
+    </p>
+{{end}}
