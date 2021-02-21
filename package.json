@@ -1,0 +1,40 @@
+{
+  "name": "site",
+  "version": "0.1.0",
+  "description": "Personal Site written in Reason",
+  "esy": {
+    "build": "dune build -p #{self.name}",
+    "buildDev": "pesy build",
+    "release": { "rewritePrefix": true, "releasedBinaries": [ "SiteApp" ] }
+  },
+  "pesy": {
+    "github": "esy/pesy-reason-template"
+  },
+  "buildDirs": {
+    "lib": {},
+    "bin": {
+      "imports": [ 
+        "Lib = require('site/lib')",
+        "Httpaf = require('@opam/httpaf')",
+        "Httpaf_lwt_unix = require('@opam/httpaf-lwt-unix')",
+        "Lwt = require('@opam/lwt')"
+       ],
+      "bin": { "SiteApp": "SiteApp.re" }
+    }
+  },
+  "scripts": { "start": "esy x SiteApp" },
+  "dependencies": {
+    "@esy-ocaml/reason": "*",
+    "@opam/dune": "*",
+    "@opam/httpaf": "0.7.0",
+    "@opam/httpaf-lwt-unix": "0.7.0",
+    "@opam/lwt": "5.4.0",
+    "@pesy/esy-pesy": "0.1.0-alpha.11",
+    "ocaml": "~4.9.0"
+  },
+  "devDependencies": {
+    "@opam/merlin": "*",
+    "@opam/ocaml-lsp-server": "ocaml/ocaml-lsp:ocaml-lsp-server.opam",
+    "refmterr": "*"
+  }
+}
