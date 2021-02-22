@@ -5,7 +5,7 @@
   "esy": {
     "build": "dune build -p #{self.name}",
     "buildDev": "pesy build",
-    "release": { "rewritePrefix": true, "releasedBinaries": [ "SiteApp" ] }
+    "release": { "rewritePrefix": true, "releasedBinaries": [ "Site" ] }
   },
   "pesy": {
     "github": "esy/pesy-reason-template"
@@ -19,10 +19,10 @@
         "Httpaf_lwt_unix = require('@opam/httpaf-lwt-unix')",
         "Lwt = require('@opam/lwt')"
        ],
-      "bin": { "SiteApp": "SiteApp.re" }
+      "bin": { "Site": "Site.re" }
     }
   },
-  "scripts": { "start": "esy x SiteApp" },
+  "scripts": { "start": "esy x Site" },
   "dependencies": {
     "@esy-ocaml/reason": "*",
     "@opam/dune": "*",
