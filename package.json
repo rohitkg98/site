@@ -11,11 +11,14 @@
     "github": "esy/pesy-reason-template"
   },
   "buildDirs": {
-    "lib": {},
+    "lib": {
+      "imports": [
+        "Httpaf = require('@opam/httpaf')"
+      ]
+    },
     "bin": {
       "imports": [ 
         "Lib = require('site/lib')",
-        "Httpaf = require('@opam/httpaf')",
         "Httpaf_lwt_unix = require('@opam/httpaf-lwt-unix')",
         "Lwt = require('@opam/lwt')"
        ],
