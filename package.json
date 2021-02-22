@@ -7,21 +7,24 @@
     "buildDev": "pesy build",
     "release": { "rewritePrefix": true, "releasedBinaries": [ "Site" ] }
   },
-  "pesy": {
-    "github": "esy/pesy-reason-template"
-  },
+  "pesy": { "github": "esy/pesy-reason-template" },
   "buildDirs": {
     "lib": {
       "imports": [
-        "Httpaf = require('@opam/httpaf')"
+        "Httpaf = require('@opam/httpaf')",
+        "Handlers = require('site/lib/handlers')"
       ]
     },
+    "lib/handlers": {
+      "imports": [ "Tyxml = require('@opam/tyxml')" ],
+      "preprocess": ["pps", "tyxml-jsx"]
+    },
     "bin": {
-      "imports": [ 
+      "imports": [
         "Lib = require('site/lib')",
         "Httpaf_lwt_unix = require('@opam/httpaf-lwt-unix')",
         "Lwt = require('@opam/lwt')"
-       ],
+      ],
       "bin": { "Site": "Site.re" }
     }
   },
@@ -32,6 +35,8 @@
     "@opam/httpaf": "0.7.0",
     "@opam/httpaf-lwt-unix": "0.7.0",
     "@opam/lwt": "5.4.0",
+    "@opam/tyxml": "4.4.0",
+    "@opam/tyxml-jsx": "4.4.0",
     "@pesy/esy-pesy": "0.1.0-alpha.11",
     "ocaml": "~4.9.0"
   },
