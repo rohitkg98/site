@@ -10,10 +10,8 @@ export const About = (): JSX.Element => {
     >
       <h1>About Me</h1>
       <p>
-        I&apos;m Kaushal Rohit, a Software Developer, and this is my Personal
-        Website. I&apos;m currently working as a Platform Engineer at Benzinga,
-        where I build high-throughput and low-latency financial services in
-        Golang.
+        I&apos;m Kaushal Rohit, a Software Developer based in Amsterdam, Netherlands. I&apos;m currently
+        working at Booking.com, where I build scalable and reliable systems.
       </p>
       <p>
         When I&apos;m not working, I usually spend my time building things,
