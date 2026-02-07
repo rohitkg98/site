@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-const Navigation = (): JSX.Element => {
+const Navigation = (): React.ReactElement => {
   return (
     <nav>
       <Link href="/">

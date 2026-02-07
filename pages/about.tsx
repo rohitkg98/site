@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 
-export const About = (): JSX.Element => {
+export const About = (): React.ReactElement => {
   return (
     <Layout
       customMeta={{

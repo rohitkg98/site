@@ -5,7 +5,7 @@ import { MetaProps } from '../types/layout';
 
 export const WEBSITE_HOST_URL = 'https://nextjs-typescript-mdx-blog.vercel.app';
 
-const Head = ({ customMeta }: { customMeta?: MetaProps }): JSX.Element => {
+const Head = ({ customMeta }: { customMeta?: MetaProps }): React.ReactElement => {
   const router = useRouter();
   const meta: MetaProps = {
     title: 'Kaushal Rohit - Website',

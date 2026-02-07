@@ -6,7 +6,7 @@ import React from 'react';
  * https://github.com/narative/gatsby-theme-novela/blob/master/%40narative/gatsby-theme-novela/src/components/Navigation/Navigation.Header.tsx
  */
 
-const ThemeSwitch = (): JSX.Element => {
+const ThemeSwitch = (): React.ReactElement => {
   const [mounted, setMounted] = React.useState(false);
   const { theme, setTheme } = useTheme();
 
